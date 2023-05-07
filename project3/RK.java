@@ -5,16 +5,16 @@ public class RK {
   int prime = 101;
   public int match(String T, String P) {
     /** Your code goes here */    
-    int n = T.length(), m = P.length(); //7, 3    
+    int n = T.length(), m = P.length(); 
     if(m > n) 
       return -1; //pattern length greater than text.
     
     int textHash = hashFunc(T, m);
     int patternHash = hashFunc(P, m);  
     
-    //calculate power of b ^ m - 1
+    //calculate power of b ^ m 
     int pow = 1;
-    for(int i = 0; i < m - 1; i++){
+    for(int i = 0; i < m; i++){
       pow = pow * b % prime;
     }
 
@@ -39,9 +39,9 @@ public class RK {
       hash = (b * hash + str.charAt(i)) % prime;
     }
     return hash;
-  }  
+  }
   int rollHash(int hash, String T, int index, int m, int pow){
-    hash = (hash * b - T.charAt(index) * pow * b + T.charAt(index + m)) % prime;
+    hash = (hash * b - T.charAt(index) * pow + T.charAt(index + m)) % prime;
     if(hash < 0)
       hash += prime;
     return hash;
